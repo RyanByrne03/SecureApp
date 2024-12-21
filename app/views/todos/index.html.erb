@@ -1,0 +1,19 @@
+<h1>To-Do List</h1>
+<%= link_to 'New To-Do', new_todo_path %>
+
+<ul>
+  <% @todos.each do |todo| %>
+    <li>
+      <strong>Title:</strong> <%= todo.title %> |
+      <strong>Status:</strong> <%= todo.completed ? 'Completed' : 'Incomplete' %>
+      <%= link_to 'View', todo_path(todo) %>
+
+      <% unless todo.completed? %>
+      <%= button_to 'Mark as Completed', 
+      mark_as_completed_todo_path(todo), 
+      method: :patch, 
+      data: { confirm: 'Are you sure you want to mark this To-Do as completed?' } %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

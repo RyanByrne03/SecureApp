@@ -1,0 +1,13 @@
+// Remove the deleted To-Do entry from the DOM
+document.getElementById("todo-<%= @todo.id %>").remove();
+
+// Display a flash message
+const flashMessage = document.createElement("div");
+flashMessage.className = "flash-notice";
+flashMessage.innerText = "To-Do was successfully deleted.";
+document.body.prepend(flashMessage);
+
+// Automatically remove the flash message after 3 seconds
+setTimeout(() => {
+  flashMessage.remove();
+}, 3000);
