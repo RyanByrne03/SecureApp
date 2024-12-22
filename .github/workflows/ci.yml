@@ -41,7 +41,7 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-        name: Fix Shebang for Ruby Scripts
+      - name: Fix Shebang for Ruby Scripts
         run: sed -i 's/ruby.exe/ruby/g' bin/*
 
       - name: Fix Permissions
