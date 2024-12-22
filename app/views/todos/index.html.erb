@@ -4,7 +4,7 @@
 <ul>
   <% @todos.each do |todo| %>
     <li>
-      <strong>Title:</strong> <%= todo.title %> |
+      <strong>Title:</strong> <%= raw todo.title %> |
       <strong>Status:</strong> <%= todo.completed ? 'Completed' : 'Incomplete' %>
       <%= link_to 'View', todo_path(todo) %>
 
