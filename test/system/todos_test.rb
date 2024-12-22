@@ -25,7 +25,7 @@ class TodosTest < ApplicationSystemTestCase
 
   test "should update To-do" do
     visit todo_url(@todo)
-    click_on "Edit this to-do", match: :first
+    click_on "Edit this todo", match: :first
 
     check "Completed" if @todo.completed
     fill_in "Description", with: @todo.description
