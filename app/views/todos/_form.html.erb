@@ -13,12 +13,12 @@
 
   <div>
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, value: h(@todo.title) %>
   </div>
 
   <div>
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, value: h(@todo.description) %>
   </div>
 
   <div>

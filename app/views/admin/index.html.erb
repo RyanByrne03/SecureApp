@@ -1,7 +1,7 @@
 <h1>Admin Dashboard</h1>
 
 
-<% if params[:password].nil? || params[:password] != 'password123' %>
+<% if params[:password].nil? || params[:password] != ENV['ADMIN_PASSWORD'] %>
   <p>Please enter the password to access the admin page:</p>
 
   <%= form_with(url: admin_path, method: :get, local: true) do |form| %>

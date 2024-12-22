@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  http_basic_authenticate_with name: 'admin', password: 'password123'
+  http_basic_authenticate_with name: ENV['ADMIN_USERNAME'], password: ENV['ADMIN_PASSWORD']
 
   def index
     @todos = Todo.all
@@ -27,10 +27,9 @@ class AdminController < ApplicationController
 
   def authenticate_admin
     # Check if the password is correct
-    password = 'password123'
-    unless params[:password] == 'password123'
+    password = ENV['ADMIN_PASSWORD']
+    unless params[:password] == password
       redirect_to root_path, alert: 'You must enter the correct password to access the admin page.'
-      render plain: "The correct password is #{password}. Please try again."
     end
   end
 

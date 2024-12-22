@@ -37,12 +37,15 @@ class TodosController < ApplicationController
   
   # PATCH/PUT /todos/1 or /todos/1.json
   def update
-  # Vulnerable: Directly interpolates user input into a raw SQL query
-  Todo.connection.execute(
-    "UPDATE todos SET description = '#{params[:todo][:description]}' WHERE id = #{params[:id]}"
-  )
-
-  redirect_to todos_path, notice: 'To-Do updated.'
+    respond_to do |format|
+      if @todo.update(todo_params)
+        format.html { redirect_to @todo, notice: "To-do was successfully updated." }
+        format.json { render :show, status: :ok, location: @todo }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @todo.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /todos/1 or /todos/1.json
